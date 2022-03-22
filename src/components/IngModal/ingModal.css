@@ -12,16 +12,32 @@
 }
 
 .ing-modal {
+  display: grid;
+  grid-template-areas:
+    "head head"
+    "left right"
+    "left right";
+  grid-template-rows: 80px 1fr 30px;
+  grid-template-columns: 30% 1fr;
+  /* grid-gap: 1rem; */
   width: 80vw;
-  height: 80vh;
+  max-width: 80rem;
+  height: 0vh;
   background-color: #f9f9f9;
   border-radius: 1%;
   box-shadow: 5px 5px 10px 0px black;
   overflow: hidden;
 }
 
+.ing-modal {
+  transition: width 1s ease-in-out;
+  height: 80vh;
+}
+
 .ing-modal__header {
-  height: 80px;
+  position: relative;
+  grid-area: head;
+  /* height: 80px; */
   background-color: #b0e298;
   background-color: #e072a4;
   display: flex;
@@ -34,16 +50,39 @@
   margin-left: 1rem;
   margin-top: 2.5rem;
   margin-right: 1rem;
+  position: absolute;
 }
 
 .ing-modal__header-title {
   color: black;
+  margin-left: 11rem;
   margin-right: auto;
 }
 
 .ing-modal__header-icon {
+  position: absolute;
+  right: -0;
   margin: 2rem;
   font-size: 2em;
   color: #3d3b8e;
   cursor: pointer;
+}
+
+.left {
+  grid-area: left;
+  background-color: #b0e298;
+  background-color: #f9f9f9;
+  max-width: 10rem;
+  /* width: 30%; */
+  /* height: calc(100% - 80px); */
+  /* border: 1px solid red; */
+}
+
+.right {
+  grid-area: right;
+  background-color: blueviolet;
+  background-color: #f9f9f9;
+  border-left: 1px solid black;
+  /* width: 100px; */
+  /* height: 100px; */
 }

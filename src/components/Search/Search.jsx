@@ -2,8 +2,12 @@ import React from "react";
 import "./search.css";
 import IngModal from "../IngModal/IngModal";
 import { GoSearch } from "react-icons/go";
+import { useModal, useModalUpdate } from "../../contexts/ModalContext";
 
-const Search = ({ showModal, handleModal }) => {
+const Search = () => {
+  const showModal = useModal();
+  const handleModal = useModalUpdate();
+
   return (
     <div className="search">
       <form
