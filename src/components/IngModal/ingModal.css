@@ -1,0 +1,49 @@
+.modal-bg {
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ing-modal {
+  width: 80vw;
+  height: 80vh;
+  background-color: #f9f9f9;
+  border-radius: 1%;
+  box-shadow: 5px 5px 10px 0px black;
+  overflow: hidden;
+}
+
+.ing-modal__header {
+  height: 80px;
+  background-color: #b0e298;
+  background-color: #e072a4;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.ing-modal__header-logo {
+  width: 150px;
+  margin-left: 1rem;
+  margin-top: 2.5rem;
+  margin-right: 1rem;
+}
+
+.ing-modal__header-title {
+  color: black;
+  margin-right: auto;
+}
+
+.ing-modal__header-icon {
+  margin: 2rem;
+  font-size: 2em;
+  color: #3d3b8e;
+  cursor: pointer;
+}

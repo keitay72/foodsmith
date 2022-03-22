@@ -15,7 +15,7 @@ const Navbar = () => {
       </div>
       <div className="navbar__login">
         <RiLoginCircleFill className="navbar__login-btn" />
-        <text className="navbar__login-text">Login</text>
+        <p className="navbar__login-text">Login</p>
       </div>
     </div>
   );
