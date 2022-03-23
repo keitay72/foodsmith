@@ -1,6 +1,6 @@
 import React from "react";
 import "./navbar.css";
-import logo from "../../food.ico";
+import logo from "../../assets/food.ico";
 import { RiLoginCircleFill } from "react-icons/ri";
 
 const Navbar = () => {

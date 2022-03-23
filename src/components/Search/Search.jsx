@@ -2,11 +2,25 @@ import React from "react";
 import "./search.css";
 import IngModal from "../IngModal/IngModal";
 import { GoSearch } from "react-icons/go";
-import { useModal, useModalUpdate } from "../../contexts/ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 
 const Search = () => {
-  const showModal = useModal();
-  const handleModal = useModalUpdate();
+  const { showModal, setShowModal } = useModal();
+
+  React.useEffect(() => {
+    const escapeKeyDownEvent = (e) => {
+      if (e.key === "Escape") {
+        setShowModal(false);
+      }
+    };
+
+    const listenForEscapeKeyPress = () =>
+      window.addEventListener("keydown", escapeKeyDownEvent);
+    if (showModal) listenForEscapeKeyPress();
+
+    // This return removes the event listener to prevent memory leak.
+    return () => window.removeEventListener("keydown", escapeKeyDownEvent);
+  }, [showModal]);
 
   return (
     <div className="search">
@@ -29,10 +43,10 @@ const Search = () => {
           <GoSearch className="search__form-btn-icon" type="submit" />
         </button>
       </form>
-      <h3 className="search__ingredient" onClick={handleModal}>
+      <h3 className="search__ingredient" onClick={() => setShowModal(true)}>
         Search by Ingredient
       </h3>
-      {showModal && <IngModal handleModal={handleModal} />}
+      {showModal && <IngModal />}
     </div>
   );
 };

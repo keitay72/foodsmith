@@ -1,0 +1,73 @@
+{
+  "title": "Southern Sour Cream Jumbles",
+  "course": "dessert",
+  "category": "cookie",
+  "servings": "36",
+  "serving-size": "1 cookie",
+  "cook-time": "9 minutes",
+  "prep-time": "10 minutes",
+  "image": "url",
+  "ingredients": {
+    "required": [
+      {
+        "ingredient": "sifted cake flour",
+        "amount": "1 2&frasl;3 cups"
+      },
+      {
+        "ingredient": "baking soda",
+        "amount": "1&frasl;4 teaspoon"
+      },
+      {
+        "ingredient": "baking powder",
+        "amount": "1 teaspoon"
+      },
+      {
+        "ingredient": "salt",
+        "amount": "1&frasl;2 teaspoon"
+      },
+      {
+        "ingredient": "short softening",
+        "amount": "1&frasl;3 cup"
+      },
+      {
+        "ingredient": "sugar",
+        "amount": "1&frasl;3 cup"
+      },
+      {
+        "ingredient": "vanilla",
+        "amount": "1 tablespoon"
+      },
+      {
+        "ingredient": "egg",
+        "amount": "1 egg"
+      },
+      {
+        "ingredient": "sour cream",
+        "amount": "1&frasl;2 cup"
+      },
+      {
+        "ingredient": "cinnamon",
+        "amount": "1&frasl;4 teaspoon"
+      },
+      {
+        "ingredient": "sugar",
+        "amount": "1 tablespoon"
+      }
+    ],
+    "optional": [
+      {
+        "ingredient": "chopped nuts",
+        "amount": "1 cup"
+      }
+    ]
+  },
+  "directions": {
+    "1": "Preheat oven to 325&deg;.",
+    "2": "Sift together the flour, baking soda, baking powder and salt.",
+    "3": "Mix until creamy the shortening, sugar and egg.",
+    "4": "Mix the flour mixture into the shortening mixture alternating with sour cream and vanilla.",
+    "5": "Drop dough by tablespoon onto greased cookie sheet 2 inches apart.",
+    "6": "Combine the cinnamon with 1 tablespoon and sprinkle on top.",
+    "7": "Bake 9 minutes or until done."
+  }
+}

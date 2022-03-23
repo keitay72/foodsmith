@@ -6,10 +6,12 @@ import { AppContextProvider } from "./contexts/ModalContext";
 
 function App() {
   return (
-    <AppContextProvider>
+    <div className="App">
       <Navbar />
-      <Search />
-    </AppContextProvider>
+      <AppContextProvider>
+        <Search />
+      </AppContextProvider>
+    </div>
   );
 }
 
