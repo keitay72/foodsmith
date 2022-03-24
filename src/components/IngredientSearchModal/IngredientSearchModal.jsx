@@ -1,10 +1,10 @@
 import React from "react";
-import "./ingModal.css";
+import "./ingredientSearchModal.css";
 import logo from "../../assets/food.ico";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useModal } from "../../contexts/ModalContext";
 
-const IngModal = () => {
+const IngredientSearchModal = () => {
   const { setShowModal } = useModal();
   return (
     <div className="modal-bg" onClick={() => setShowModal(false)}>
@@ -29,4 +29,4 @@ const IngModal = () => {
   );
 };
 
-export default IngModal;
+export default IngredientSearchModal;

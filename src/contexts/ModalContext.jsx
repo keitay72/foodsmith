@@ -6,11 +6,13 @@ export const useModal = () => {
   return React.useContext(ModalContext);
 };
 
-export const AppContextProvider = ({ children }) => {
+export const ModalContextProvider = ({ children }) => {
   const [showModal, setShowModal] = React.useState(false);
+  const [showLogin, setShowLogin] = React.useState(false);
 
   return (
-    <ModalContext.Provider value={{ showModal, setShowModal }}>
+    <ModalContext.Provider
+      value={{ showModal, setShowModal, showLogin, setShowLogin }}>
       {children}
     </ModalContext.Provider>
   );

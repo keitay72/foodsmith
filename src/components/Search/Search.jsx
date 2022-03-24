@@ -1,6 +1,6 @@
 import React from "react";
 import "./search.css";
-import IngModal from "../IngModal/IngModal";
+import IngredientSearchModal from "../IngredientSearchModal/IngredientSearchModal";
 import { GoSearch } from "react-icons/go";
 import { useModal } from "../../contexts/ModalContext";
 
@@ -16,6 +16,7 @@ const Search = () => {
 
     const listenForEscapeKeyPress = () =>
       window.addEventListener("keydown", escapeKeyDownEvent);
+
     if (showModal) listenForEscapeKeyPress();
 
     // This return removes the event listener to prevent memory leak.
@@ -46,7 +47,7 @@ const Search = () => {
       <h3 className="search__ingredient" onClick={() => setShowModal(true)}>
         Search by Ingredient
       </h3>
-      {showModal && <IngModal />}
+      {showModal && <IngredientSearchModal />}
     </div>
   );
 };

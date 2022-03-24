@@ -73,9 +73,6 @@
   background-color: #b0e298;
   background-color: #f9f9f9;
   max-width: 10rem;
-  /* width: 30%; */
-  /* height: calc(100% - 80px); */
-  /* border: 1px solid red; */
 }
 
 .right {
@@ -83,6 +80,4 @@
   background-color: blueviolet;
   background-color: #f9f9f9;
   border-left: 1px solid black;
-  /* width: 100px; */
-  /* height: 100px; */
 }
