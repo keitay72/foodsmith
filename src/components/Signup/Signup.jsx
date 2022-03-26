@@ -1,19 +1,19 @@
 import React from "react";
-import "./loginModal.css";
+import "./signup.css";
 import { useModal } from "../../contexts/ModalContext";
 
-const LoginModal = () => {
-  const { setShowLogin } = useModal();
-
+const Signup = () => {
+  const { handleSignup, handleLoginSignupSwitch } = useModal();
   return (
-    <div className="login-bg" onClick={() => setShowLogin(false)}>
-      <div
-        className="login-modal-container"
-        onClick={(e) => e.stopPropagation()}>
+    <div
+      className="signup-modal-container login-signup"
+      onClick={(e) => e.stopPropagation()}>
+      <div className="modal-title">Signup</div>
+      <div className="form-container">
         <form
-          className="login-modal-form"
+          className="signup-modal-form"
           action="submit"
-          onSubmit={() => setShowLogin(false)}>
+          onSubmit={handleSignup}>
           <input
             id="first-name"
             type="text"
@@ -54,8 +54,14 @@ const LoginModal = () => {
           <button className="login-btn">Submit</button>
         </form>
       </div>
+      <div className="signup-link-container">
+        <span className="signup-text">Already have an account? </span>
+        <span className="signup-link" onClick={handleLoginSignupSwitch}>
+          Login here.
+        </span>
+      </div>
     </div>
   );
 };
 
-export default LoginModal;
+export default Signup;

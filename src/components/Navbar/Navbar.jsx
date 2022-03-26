@@ -2,16 +2,23 @@ import React from "react";
 import "./navbar.css";
 import logo from "../../assets/food.ico";
 import { RiLoginCircleFill } from "react-icons/ri";
-import LoginModal from "../LoginModal/LoginModal";
+import LoginSignupModal from "../LoginSignupModal/LoginSignupModal";
 import { useModal } from "../../contexts/ModalContext";
 
 const Navbar = () => {
-  const { showLogin, setShowLogin } = useModal();
+  const {
+    showLogin,
+    setShowLogin,
+    signupFormData,
+    loginFormData,
+    toggleLoginSignupModalStatesToFalse,
+  } = useModal();
 
+  // This useEffect is to listen for the "Escape" key to close the "LoginModal" component
   React.useEffect(() => {
     const escapeKeyDownEvent = (e) => {
       if (e.key === "Escape") {
-        setShowLogin(false);
+        toggleLoginSignupModalStatesToFalse();
       }
     };
 
@@ -26,7 +33,13 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <img className="navbar__logo" src={logo} alt="chef logo" />
+      {console.log(`Login Form Data =>`)}
+      {console.log(loginFormData)}
+      {console.log(`Signup Form Data =>`)}
+      {console.log(signupFormData)}
+      <a href="http://localhost:3000/">
+        <img className="navbar__logo" src={logo} alt="chef logo" />
+      </a>
       <div className="navbar__title">
         <h1 className="navbar__title-name">FoodSmith</h1>
         <p className="navbar__title-text">
@@ -42,7 +55,7 @@ const Navbar = () => {
           Login
         </p>
       </div>
-      {showLogin && <LoginModal />}
+      {showLogin && <LoginSignupModal />}
     </div>
   );
 };
