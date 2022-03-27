@@ -41,10 +41,14 @@ const Navbar = () => {
         <img className="navbar__logo" src={logo} alt="chef logo" />
       </a>
       <div className="navbar__title">
-        <h1 className="navbar__title-name">FoodSmith</h1>
-        <p className="navbar__title-text">
-          The best place to create and share recipes.
-        </p>
+        <div className="navbar__title-name-div">
+          <h1 className="navbar__title-name">FoodSmith</h1>
+        </div>
+        <div className="navbar__title-text-div">
+          <h4 className="navbar__title-text">
+            The best place to create and share recipes.
+          </h4>
+        </div>
       </div>
       <div className="navbar__login">
         <RiLoginCircleFill

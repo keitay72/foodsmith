@@ -51,7 +51,7 @@ const Signup = () => {
           <label htmlFor="confirm-password" required>
             Confirm Password
           </label>
-          <button className="login-btn">Submit</button>
+          <button className="signup-btn login-signup-btn">Submit</button>
         </form>
       </div>
       <div className="signup-link-container">
