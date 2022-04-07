@@ -111,6 +111,10 @@
   padding: 0 10px;
 }
 
+.duplicate-input::placeholder {
+  color: red;
+}
+
 .ingredient-search-add-btn {
   border: none;
   padding: 0px;
@@ -161,6 +165,24 @@
 .ingredient-keyword {
   color: #f9f9f9;
   font-size: 18px;
+}
+
+.keyword-duplicate {
+  background-color: #6883ba;
+  /* opacity: 0; */
+  animation: duplicate-fade 2s linear forwards;
+}
+
+@keyframes duplicate-fade {
+  0% {
+    background-color: red;
+  }
+  30% {
+    background-color: red;
+  }
+  100% {
+    background-color: #6883ba;
+  }
 }
 
 .ingredient-keyword-icon {

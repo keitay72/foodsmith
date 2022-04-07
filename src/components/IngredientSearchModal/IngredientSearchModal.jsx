@@ -29,7 +29,16 @@ const IngredientSearchModal = () => {
     }
 
     if (ingredientsSearchList.includes(searchIngredient)) {
-      alert("Duplicate Ingredient");
+      e.target[0].setAttribute("placeholder", "Duplicate Ingredient");
+      console.log(e.target[0]);
+      // e.target[0].classList.add("duplicate-input");
+      const element = document.getElementById(searchIngredient);
+      element.parentNode.classList.add("keyword-duplicate");
+      setTimeout(() => {
+        e.target[0].removeAttribute("placeholder", "Duplicate Ingredient");
+        element.parentNode.classList.remove("keyword-duplicate");
+        // e.target[0].classList.remove("duplicate-input");
+      }, 2000);
     }
 
     if (!ingredientsSearchList.includes(searchIngredient))
