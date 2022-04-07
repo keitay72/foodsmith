@@ -1,9 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 import logo from "../../assets/food.ico";
 import { RiLoginCircleFill } from "react-icons/ri";
+import { BsPersonCircle } from "react-icons/bs";
 import LoginSignupModal from "../LoginSignupModal/LoginSignupModal";
 import { useModal } from "../../contexts/ModalContext";
+import { useAuth } from "../../contexts/AuthContext";
+import auth from "../../database/auth.json";
 
 const Navbar = () => {
   const {
@@ -13,6 +17,17 @@ const Navbar = () => {
     loginFormData,
     toggleLoginSignupModalStatesToFalse,
   } = useModal();
+
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+
+  React.useEffect(() => {
+    if (
+      loginFormData.username === auth.username &&
+      loginFormData.password === auth.password
+    ) {
+      setIsLoggedIn(true);
+    }
+  }, [loginFormData]);
 
   // This useEffect is to listen for the "Escape" key to close the "LoginModal" component
   React.useEffect(() => {
@@ -37,9 +52,7 @@ const Navbar = () => {
       {console.log(loginFormData)}
       {console.log(`Signup Form Data =>`)}
       {console.log(signupFormData)}
-      <a href="http://localhost:3000/">
-        <img className="navbar__logo" src={logo} alt="chef logo" />
-      </a>
+      <img src={logo} alt="" className="navbar__logo" />
       <div className="navbar__title">
         <div className="navbar__title-name-div">
           <h1 className="navbar__title-name">FoodSmith</h1>
@@ -51,13 +64,21 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar__login">
-        <RiLoginCircleFill
-          className="navbar__login-btn"
-          onClick={() => setShowLogin(true)}
-        />
-        <p className="navbar__login-text" onClick={() => setShowLogin(true)}>
-          Login
-        </p>
+        {isLoggedIn ? (
+          <BsPersonCircle className="profile-logo" />
+        ) : (
+          <>
+            <RiLoginCircleFill
+              className="navbar__login-btn"
+              onClick={() => setShowLogin(true)}
+            />
+            <p
+              className="navbar__login-text"
+              onClick={() => setShowLogin(true)}>
+              Login
+            </p>
+          </>
+        )}
       </div>
       {showLogin && <LoginSignupModal />}
     </div>
