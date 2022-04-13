@@ -4,7 +4,7 @@ import { useModal } from "../../contexts/ModalContext";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 
-const LoginModal = () => {
+const LoginSignupModal = () => {
   const { showLogin, showSignup, toggleLoginSignupModalStatesToFalse } =
     useModal();
 
@@ -15,4 +15,4 @@ const LoginModal = () => {
   );
 };
 
-export default LoginModal;
+export default LoginSignupModal;
