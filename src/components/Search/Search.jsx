@@ -45,14 +45,10 @@ const Search = () => {
       // console.log(cardCount);
       setCards(cardCount);
     };
-    window.addEventListener("onload", handleCarousel);
     window.addEventListener("resize", handleCarousel);
     console.log(window);
 
-    return (
-      () => window.addEventListener("resize", handleCarousel),
-      window.addEventListener("onload", handleCarousel)
-    );
+    return () => window.addEventListener("resize", handleCarousel);
   });
 
   React.useEffect(() => {

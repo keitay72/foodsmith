@@ -2,14 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import logo from "../../assets/food.ico";
-import { RiLoginCircleFill } from "react-icons/ri";
+import { RiLoginCircleFill, RiLogoutCircleLine } from "react-icons/ri";
 import { BsPersonCircle } from "react-icons/bs";
+import { MdManageAccounts, MdSettings, MdUpload } from "react-icons/md";
 import LoginSignupModal from "../LoginSignupModal/LoginSignupModal";
 import { useModal } from "../../contexts/ModalContext";
 import { useAuth } from "../../contexts/AuthContext";
 import auth from "../../database/auth.json";
+import UploadRecipeModal from "../UploadRecipeModal/UploadRecipeModal";
 
 const Navbar = () => {
+  const [showMenu, setShowMenu] = React.useState(false);
+  const [showRecipeUploadModal, setShowRecipeUploadModal] =
+    React.useState(false);
+
   const {
     showLogin,
     setShowLogin,
@@ -46,6 +52,15 @@ const Navbar = () => {
     return () => window.removeEventListener("keydown", escapeKeyDownEvent);
   }, [showLogin]);
 
+  const handleClick = () => {
+    setShowMenu((prevState) => !prevState);
+  };
+
+  const handleUploadRecipeModal = () => {
+    setShowRecipeUploadModal(true);
+    setShowMenu(false);
+  };
+
   return (
     <div className="navbar">
       {console.log(`Login Form Data =>`)}
@@ -65,7 +80,31 @@ const Navbar = () => {
       </div>
       <div className="navbar__login">
         {isLoggedIn ? (
-          <BsPersonCircle className="profile-logo" />
+          <>
+            <BsPersonCircle className="profile-logo" onClick={handleClick} />
+            {showMenu && (
+              <div className="menu">
+                <ul>
+                  <li>
+                    <MdManageAccounts className="menu-icon" />
+                    Account
+                  </li>
+                  <li>
+                    <MdSettings className="menu-icon" />
+                    Settings
+                  </li>
+                  <li onClick={handleUploadRecipeModal}>
+                    <MdUpload className="menu-icon" />
+                    Upload Recipe
+                  </li>
+                  <li>
+                    <RiLogoutCircleLine className="menu-icon" />
+                    Sign out
+                  </li>
+                </ul>
+              </div>
+            )}
+          </>
         ) : (
           <>
             <RiLoginCircleFill
@@ -81,6 +120,7 @@ const Navbar = () => {
         )}
       </div>
       {showLogin && <LoginSignupModal />}
+      {showRecipeUploadModal && <UploadRecipeModal />}
     </div>
   );
 };

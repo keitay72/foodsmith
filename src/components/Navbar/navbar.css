@@ -94,4 +94,33 @@
 .profile-logo {
   color: #f9f9f9;
   font-size: 2.5em;
+  cursor: pointer;
+}
+
+.menu {
+  background-color: #f9f9f9;
+  color: black;
+  position: fixed;
+  top: 70px;
+  right: 10px;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.menu ul li:hover {
+  color: #100dce;
+}
+
+.menu-icon {
+  transform: translateY(2px);
 }
