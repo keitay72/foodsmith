@@ -13,19 +13,16 @@
 
 .upload-recipe-modal {
   max-width: 1000px;
-  /* width: 500px; */
   width: 80%;
   height: 80%;
   background-color: #f9f9f9;
   border-radius: 10px;
-  /* border: none; */
   box-shadow: 3px 7px 10px rgba(61, 59, 142, 0.3);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* border: 1px solid red; */
 }
 
 .upload-recipe-modal__title {
@@ -40,34 +37,84 @@
   justify-content: center;
 }
 
-.upload-recipe-modal__form-container {
+.recipe {
+  display: flex;
+  width: 100%;
+  height: calc(100% - 60px);
+}
+
+.recipe__preview-container {
+  width: 40%;
+  height: 100%;
+  border-right: 3px solid #100dce;
+}
+
+.recipe__form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: calc(100% - 60px);
-  /* border: 1px solid black; */
+  width: 60%;
+  height: 100%;
+  overflow: auto;
 }
 
 .upload-recipe-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  width: 100%;
+  min-height: 90%;
+  height: auto;
+}
+
+.add-text-div {
+  /* border: 1px solid black; */
+  width: 60%;
+  min-height: 120px;
+  max-height: 120px;
+  display: inline-flex;
+  margin: 20px 0px;
+}
+
+.add-text-div textarea {
+  resize: none;
+  height: 100%;
   width: 80%;
-  height: 90%;
+}
+
+.add-text-div button {
+  width: 20%;
+  min-height: 120px;
+  max-height: 120px;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  color: #f9f9f9;
+  font-weight: 600;
+  background-color: #100dce;
+  box-shadow: 3px 7px 8px rgb(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .upload-recipe-form label {
   transform: translateX(-9999px);
 }
 
+.clear-upload-div {
+  width: 60%;
+  min-height: 80px;
+  display: inline-flex;
+  justify-content: space-evenly;
+  margin: 20px 0px;
+}
+
 .upload-recipe-btn,
+.clear-form-btn,
 .add-div button {
   width: 120px;
-  height: 40px;
-  border-radius: 5px;
+  min-height: 40px;
+  max-height: 40px;
+  border-radius: 0 5px 5px 0;
   border: none;
   color: #f9f9f9;
   font-weight: 600;
@@ -78,11 +125,19 @@
 
 .upload-recipe-form input {
   border-color: #100dce37;
-  border-radius: 5px;
-  height: 40px;
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+  min-height: 40px;
   width: 60%;
   font-size: 18px;
   padding: 0 10px;
+  margin: 20px;
+}
+
+.upload-recipe-form input:focus {
+  /* border: 5px solid red; */
+  /* border-right: none; */
+  /* outline: none; */
 }
 
 .mapped-div {
@@ -90,17 +145,17 @@
 }
 
 .add-div {
-  /* border: 1px solid black; */
   width: 60%;
-  /* position: relative; */
+  min-height: 40px;
   display: inline-flex;
+  margin: 20px 0px;
 }
 
 .add-div input {
-  width: 100%;
+  width: 80%;
+  margin: 0;
 }
 
 .add-div button {
-  /* position: absolute; */
-  /* right: 10px; */
+  width: 20%;
 }
