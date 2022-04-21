@@ -120,7 +120,11 @@ const Navbar = () => {
         )}
       </div>
       {showLogin && <LoginSignupModal />}
-      {showRecipeUploadModal && <UploadRecipeModal />}
+      {showRecipeUploadModal && (
+        <UploadRecipeModal
+          setShowRecipeUploadModal={setShowRecipeUploadModal}
+        />
+      )}
     </div>
   );
 };

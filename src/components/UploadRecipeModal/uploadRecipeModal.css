@@ -35,6 +35,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.close-container {
+  position: absolute;
+  right: 25px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  color: #100dce;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.close {
+  width: 25px;
+  height: 4px;
+  background-color: #100dce;
+  position: fixed;
+  border-radius: 2px;
+}
+
+.close-1 {
+  transform: rotate(45deg);
+}
+.close-2 {
+  transform: rotate(-45deg);
 }
 
 .recipe {

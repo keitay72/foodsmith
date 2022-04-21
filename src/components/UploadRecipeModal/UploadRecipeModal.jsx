@@ -1,16 +1,18 @@
 import React from "react";
 import "./uploadRecipeModal.css";
 
-const UploadRecipeModal = () => {
-  const [addIngredientValue, setAddIngredientValue] = React.useState("");
-  const [addDirectionValue, setAddDirectionValue] = React.useState("");
-  const [previewRecipe, setPreviewRecipe] = React.useState({
+const UploadRecipeModal = ({ setShowRecipeUploadModal }) => {
+  const initialState = {
     title: "",
     subtitle: "",
     description: "",
     ingredients: [],
     directions: [],
-  });
+    controlledInputIngredient: "",
+    controlledInputDirection: "",
+  };
+
+  const [previewRecipe, setPreviewRecipe] = React.useState(initialState);
 
   const titleInputRef = React.useRef(null);
   const addIngredientRef = React.useRef(null);
@@ -21,11 +23,15 @@ const UploadRecipeModal = () => {
   }, []);
 
   const handleIngredientInput = (e) => {
-    setAddIngredientValue(e.target.value);
+    setPreviewRecipe((prev) => {
+      return { ...prev, controlledInputIngredient: e.target.value };
+    });
   };
 
   const handleDirectionInput = (e) => {
-    setAddDirectionValue(e.target.value);
+    setPreviewRecipe((prev) => {
+      return { ...prev, controlledInputDirection: e.target.value };
+    });
   };
 
   const handlePreviewRecipe = (e, key) => {
@@ -37,20 +43,30 @@ const UploadRecipeModal = () => {
   const handlePreviewRecipeArray = (key) => {
     switch (key) {
       case "ingredients":
-        if (addIngredientValue) {
+        if (previewRecipe.controlledInputIngredient) {
           setPreviewRecipe((prev) => {
-            return { ...prev, [key]: [...prev[key], addIngredientValue] };
+            return {
+              ...prev,
+              [key]: [...prev[key], prev.controlledInputIngredient],
+            };
           });
-          setAddIngredientValue("");
+          setPreviewRecipe((prev) => {
+            return { ...prev, controlledInputIngredient: "" };
+          });
         }
         addIngredientRef.current.focus();
         break;
       case "directions":
-        if (addDirectionValue) {
+        if (previewRecipe.controlledInputDirection) {
           setPreviewRecipe((prev) => {
-            return { ...prev, [key]: [...prev[key], addDirectionValue] };
+            return {
+              ...prev,
+              [key]: [...prev[key], prev.controlledInputDirection],
+            };
           });
-          setAddDirectionValue("");
+          setPreviewRecipe((prev) => {
+            return { ...prev, controlledInputDirection: "" };
+          });
         }
         addDirectionRef.current.focus();
         break;
@@ -59,21 +75,8 @@ const UploadRecipeModal = () => {
     }
   };
 
-  const handleUploadRecipe = () => {
-    console.log(previewRecipe);
-  };
-
   const handleClearForm = () => {
-    setPreviewRecipe({
-      title: "",
-      subtitle: "",
-      description: "",
-      ingredients: [],
-      directions: [],
-    });
-
-    setAddIngredientValue("");
-    setAddDirectionValue("");
+    setPreviewRecipe(initialState);
   };
 
   const handleRemoveIngredientOrDirection = (index, list) => {
@@ -97,6 +100,25 @@ const UploadRecipeModal = () => {
     }
   };
 
+  const handleRecipeUploadOnSubmit = (e) => {
+    e.preventDefault();
+    if (
+      previewRecipe.title &&
+      previewRecipe.subtitle &&
+      previewRecipe.description &&
+      previewRecipe.ingredients.length > 0 &&
+      previewRecipe.directions.length > 0
+    ) {
+      //   console.log(previewRecipe);
+      setShowRecipeUploadModal(false);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setPreviewRecipe(initialState);
+    setShowRecipeUploadModal(false);
+  };
+
   const handleReorderList = () => {
     console.log("Clicked");
   };
@@ -104,7 +126,14 @@ const UploadRecipeModal = () => {
   return (
     <div className="upload-recipe-modal-bg">
       <div className="upload-recipe-modal">
-        <div className="upload-recipe-modal__title">Create Recipe</div>
+        <div className="upload-recipe-modal__title">
+          Create Recipe
+          <div className="close-container" onClick={handleCloseModal}>
+            <div className="close close-1"></div>
+            <div className="close close-2"></div>
+          </div>
+        </div>
+
         <div className="recipe">
           <div className="recipe__preview-container">
             {previewRecipe.title && <h2>{previewRecipe.title}</h2>}
@@ -125,11 +154,6 @@ const UploadRecipeModal = () => {
                   {previewRecipe.ingredients.map((ingredient, i) => {
                     return (
                       <div className="mapped-div">
-                        {/* <div className="reorder-container">
-                          <div className="reorder-bar" />
-                          <div className="reorder-bar" />
-                          <div className="reorder-bar" />
-                        </div> */}
                         <button>Edit</button>
                         <button
                           onClick={() =>
@@ -152,15 +176,7 @@ const UploadRecipeModal = () => {
                 <ol className="mapped-directions">
                   {previewRecipe.directions.map((direction, i) => {
                     return (
-                      //   <>
                       <div className="mapped-div">
-                        <div
-                          className="reorder-container"
-                          onMouseDown={handleReorderList}>
-                          <div className="reorder-bar" />
-                          <div className="reorder-bar" />
-                          <div className="reorder-bar" />
-                        </div>
                         <button>Edit</button>
                         <button
                           onClick={() =>
@@ -170,12 +186,6 @@ const UploadRecipeModal = () => {
                         </button>
                         <li key={i}>{direction}</li>
                       </div>
-                      /* <li key={i} style={{ border: "1px solid black" }}>
-                          <button>Edit</button>
-                          <button>Remove</button>
-                          {direction}
-                        </li>
-                      </> */
                     );
                   })}
                 </ol>
@@ -194,7 +204,7 @@ const UploadRecipeModal = () => {
             <form
               className="upload-recipe-form"
               action="submit"
-              onSubmit={(e) => e.preventDefault()}>
+              onSubmit={handleRecipeUploadOnSubmit}>
               <input
                 className="title-input"
                 type="text"
@@ -221,7 +231,7 @@ const UploadRecipeModal = () => {
                   className="list-input"
                   type="text"
                   placeholder="Ingredient"
-                  value={addIngredientValue}
+                  value={previewRecipe.controlledInputIngredient}
                   onChange={handleIngredientInput}
                   ref={addIngredientRef}
                 />
@@ -236,7 +246,7 @@ const UploadRecipeModal = () => {
                   className="list-input"
                   type="text"
                   placeholder="Directions"
-                  value={addDirectionValue}
+                  value={previewRecipe.controlledInputDirection}
                   onChange={handleDirectionInput}
                   ref={addDirectionRef}
                 />
@@ -253,9 +263,7 @@ const UploadRecipeModal = () => {
                   onClick={handleClearForm}>
                   Clear Form
                 </button>
-                <button
-                  className="upload-recipe-btn"
-                  onClick={handleUploadRecipe}>
+                <button className="upload-recipe-btn" type="submit">
                   Upload Recipe
                 </button>
               </div>
