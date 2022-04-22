@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./uploadRecipeModal.css";
 
 const UploadRecipeModal = ({ setShowRecipeUploadModal }) => {
@@ -176,7 +176,12 @@ const UploadRecipeModal = ({ setShowRecipeUploadModal }) => {
                 <ol className="mapped-directions">
                   {previewRecipe.directions.map((direction, i) => {
                     return (
-                      <div className="mapped-div">
+                      <div className="mapped-div" key={i} draggable>
+                        <div className="reorder-container">
+                          <div className="reorder-bar"></div>
+                          <div className="reorder-bar"></div>
+                          <div className="reorder-bar"></div>
+                        </div>
                         <button>Edit</button>
                         <button
                           onClick={() =>
