@@ -4,12 +4,50 @@ import logo from "../../assets/food.ico";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useModal } from "../../contexts/ModalContext";
 import { BsPlusSquareFill } from "react-icons/bs";
+import data from "../../database/db.json";
 
 const IngredientSearchModal = () => {
   const { setShowModal } = useModal();
 
   const [searchIngredient, setIngredient] = React.useState("");
   const [ingredientsSearchList, setIngredientsSearchList] = React.useState([]);
+
+  const handleSearch = () => {
+    const recipes = data.recipes;
+
+    // console.log(ingredientsSearchList);
+    // console.log(recipes);
+
+    const matching = [];
+
+    for (let i = 0; i < recipes.length; i++) {
+      let recipe = recipes[i];
+      let ingredientsList = [
+        ...recipe.ingredients.required,
+        ...recipe.ingredients.optional,
+      ];
+
+      for (let j = 0; j < ingredientsList.length; j++) {
+        let ingredient = ingredientsList[j].ingredient;
+        let ingArray = ingredient.split(" ");
+
+        for (let k = 0; k < ingArray.length; k++) {
+          if (
+            ingredientsSearchList.includes(ingArray[k]) &&
+            !matching.includes(recipe)
+          ) {
+            matching.push(recipe);
+            // console.log(true);
+            // console.log(recipe);
+          }
+        }
+      }
+    }
+
+    matching.map((match) => {
+      console.log(match);
+    });
+  };
 
   const handleIngredient = (e) => {
     e.preventDefault();
@@ -87,8 +125,6 @@ const IngredientSearchModal = () => {
                 <BsPlusSquareFill className="ingredient-search-add" />
               </button>
             </div>
-            {console.log(searchIngredient)}
-            {console.log(ingredientsSearchList)}
             <div className="ingredients-list-div">
               {ingredientsSearchList.length
                 ? ingredientsSearchList.map((ingredient) => {
@@ -108,7 +144,10 @@ const IngredientSearchModal = () => {
             </div>
             {/* This button styling is primarily in "loginSignup.css"
             Some addition styling for positioning is in "ingredientSearchModal.css" */}
-            <button className="ingredient-search-btn" type="button">
+            <button
+              className="ingredient-search-btn"
+              type="button"
+              onClick={handleSearch}>
               Search
             </button>
           </form>
