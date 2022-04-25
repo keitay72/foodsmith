@@ -1,0 +1,13 @@
+.recipe-tile {
+  border: 1px solid black;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.recipe-tile > img {
+  width: 190px;
+  align-self: center;
+}
